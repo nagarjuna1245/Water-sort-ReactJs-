@@ -1,0 +1,551 @@
+/* ═══════════════════════════════════════════════════════════════
+   LEVEL COMPLETE — tropical premium celebration screen
+   Matches the gameplay reference skin: Fredoka type, wooden
+   planks, glossy candy buttons, soft aqua depth. No holographics.
+   ═══════════════════════════════════════════════════════════════ */
+
+.lcx-root {
+  position: absolute;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: linear-gradient(180deg, #8ED8F8 0%, #BDEEFF 45%, #2BBDE6 100%);
+  font-family: 'Fredoka', sans-serif;
+  padding: clamp(26px, 8cqi, 40px) 0 calc(20px + env(safe-area-inset-bottom, 0px));
+}
+.lcx-root::-webkit-scrollbar { display: none; }
+
+/* teal vignette so the card pops */
+.lcx-dim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(120% 90% at 50% 42%, rgba(4, 44, 66, 0) 30%, rgba(4, 44, 66, 0.34) 100%),
+    linear-gradient(180deg, rgba(8, 60, 90, 0.18) 0%, rgba(8, 60, 90, 0.30) 100%);
+  animation: lcfadeIn 0.5s ease-out both;
+}
+
+@keyframes lcfadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ─────────────────────────── confetti ─────────────────────────── */
+.lcx-confetti {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.lcx-cf {
+  position: absolute;
+  top: -24px;
+  opacity: 0;
+  animation: lcfall linear infinite;
+}
+
+.lcx-cf-rect { border-radius: 2px; }
+.lcx-cf-circ { border-radius: 50%; }
+.lcx-cf-star {
+  clip-path: polygon(50% 0%, 63% 34%, 98% 36%, 71% 57%, 82% 92%, 50% 72%, 18% 92%, 29% 57%, 2% 36%, 37% 34%);
+}
+
+@keyframes lcfall {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0; }
+  6%   { opacity: 0.95; }
+  25%  { transform: translate3d(12px, 26vh, 0) rotate(calc(var(--spin) * 0.25)); }
+  50%  { transform: translate3d(-10px, 50vh, 0) rotate(calc(var(--spin) * 0.5)); opacity: 0.95; }
+  75%  { transform: translate3d(12px, 76vh, 0) rotate(calc(var(--spin) * 0.75)); }
+  100% { transform: translate3d(0, 104vh, 0) rotate(var(--spin)); opacity: 0; }
+}
+
+/* ─────────────────────────── close ─────────────────────────── */
+.lcx-close {
+  position: absolute;
+  top: clamp(12px, 4cqi, 22px);
+  right: clamp(12px, 4cqi, 22px);
+  z-index: 4;
+  width: clamp(40px, 12.5cqi, 50px);
+  height: clamp(40px, 12.5cqi, 50px);
+  border: 3px solid #FFFFFF;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #B06CF5 0%, #8B2FE8 55%, #6D1BC4 100%);
+  box-shadow: 0 5px 0 #57149B, 0 10px 22px rgba(10, 40, 70, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  animation: lcpopIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both 0.15s;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.lcx-close:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #57149B, 0 4px 12px rgba(10, 40, 70, 0.35);
+}
+
+/* ─────────────────────────── card ─────────────────────────── */
+.lcx-card {
+  position: relative;
+  z-index: 2;
+  width: min(88cqi, 380px);
+  /* Auto margins centre the card without the unreachable top overflow that
+     align-items:center causes once the card is taller than the screen. */
+  margin: auto;
+  padding: clamp(18px, 5.5cqi, 26px) clamp(14px, 4.5cqi, 22px) clamp(16px, 4.5cqi, 22px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(10px, 3cqi, 16px);
+  border-radius: clamp(24px, 7cqi, 34px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(228, 249, 255, 0.92) 100%);
+  border: 3px solid rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 18px 44px rgba(6, 46, 72, 0.4),
+    inset 0 2px 0 rgba(255, 255, 255, 1),
+    inset 0 -6px 14px rgba(120, 200, 235, 0.25);
+  animation: lcpopIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both 0.05s;
+}
+
+@keyframes lcpopIn {
+  from { transform: scale(0.62) translateY(26px); opacity: 0; }
+  to   { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* ─────────────────────────── banner ─────────────────────────── */
+.lcx-banner {
+  position: absolute;
+  top: clamp(-34px, -8.5cqi, -26px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(150px, 52cqi, 220px);
+  height: clamp(44px, 12.5cqi, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #F2A950 0%, #D9822B 55%, #B3631C 100%);
+  border: 3px solid #8A5A1E;
+  box-shadow:
+    0 6px 0 #7C4A15,
+    0 12px 22px rgba(80, 40, 5, 0.4),
+    inset 0 2px 0 rgba(255, 235, 190, 0.65),
+    inset 0 -3px 6px rgba(90, 45, 5, 0.35);
+  animation: lcbannerDrop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both 0.28s;
+}
+
+@keyframes lcbannerDrop {
+  from { transform: translateX(-50%) translateY(-70px) rotate(-4deg); opacity: 0; }
+  to   { transform: translateX(-50%) translateY(0) rotate(0deg); opacity: 1; }
+}
+
+.lcx-banner::before {
+  content: "";
+  position: absolute;
+  inset: 5px 8px;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 230, 180, 0.4);
+  pointer-events: none;
+}
+
+.lcx-banner-text {
+  font-weight: 700;
+  font-size: clamp(17px, 5.2cqi, 22px);
+  color: #FFF6E0;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 0 rgba(96, 50, 6, 0.85), 0 4px 8px rgba(96, 50, 6, 0.4);
+}
+
+.lcx-banner-leaf {
+  position: absolute;
+  width: clamp(26px, 8cqi, 36px);
+  top: 30%;
+}
+.lcx-banner-leaf-l { left: clamp(-24px, -6.5cqi, -16px); }
+.lcx-banner-leaf-r { right: clamp(-24px, -6.5cqi, -16px); transform: scaleX(-1); }
+
+/* ─────────────────────────── title ─────────────────────────── */
+.lcx-title {
+  margin: clamp(8px, 2.5cqi, 14px) 0 0;
+  font-weight: 800;
+  font-size: clamp(30px, 10.5cqi, 44px);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  background: linear-gradient(180deg, #FFE87A 0%, #FFC531 45%, #F08C00 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter:
+    drop-shadow(0 2px 0 #B45309)
+    drop-shadow(0 5px 10px rgba(120, 60, 0, 0.35));
+  animation: lctitleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both 0.42s;
+}
+
+@keyframes lctitleIn {
+  from { transform: scale(0.3); opacity: 0; }
+  60%  { transform: scale(1.12); opacity: 1; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* ─────────────────────────── stars ─────────────────────────── */
+.lcx-stars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 2.5cqi, 16px);
+  margin-top: clamp(-4px, -1cqi, 0px);
+}
+
+.lcx-star-slot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(64px, 21cqi, 90px);
+  height: clamp(64px, 21cqi, 90px);
+}
+
+.lcx-star-slot.is-big {
+  width: clamp(84px, 27cqi, 116px);
+  height: clamp(84px, 27cqi, 116px);
+  margin-bottom: clamp(6px, 2cqi, 12px);
+}
+
+.lcx-star-slot svg:not(.lcx-rays) {
+  position: relative;
+  z-index: 2;
+  animation: lcxStarPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both var(--sd);
+  filter: drop-shadow(0 4px 8px rgba(90, 50, 0, 0.3));
+}
+
+.lcx-star-slot.is-dim svg:not(.lcx-rays) {
+  filter: none;
+  animation: lcxStarDim 0.5s ease-out both var(--sd);
+}
+
+@keyframes lcxStarPop {
+  0%   { transform: scale(0) rotate(-140deg); opacity: 0; }
+  60%  { transform: scale(1.3) rotate(8deg); opacity: 1; }
+  80%  { transform: scale(0.94) rotate(-2deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes lcxStarDim {
+  from { transform: scale(0.4); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* sunburst: flash in, then keep a slow lazy spin */
+.lcx-rays {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -50%;
+  margin-top: -50%;
+  width: 100%;
+  height: 100%;
+  transform: scale(0.4) translateX(0);
+  z-index: 1;
+  opacity: 0;
+  animation:
+    lcxRayBurst 0.5s ease-out both var(--sd),
+    lcxRaySpin 16s linear infinite;
+  animation-delay: var(--sd), calc(var(--sd) + 0.5s);
+}
+
+@keyframes lcxRayBurst {
+  0%   { opacity: 0; transform: scale(0.35); }
+  55%  { opacity: 0.9; transform: scale(1.12); }
+  100% { opacity: 0.55; transform: scale(1); }
+}
+
+@keyframes lcxRaySpin {
+  from { transform: rotate(0deg) scale(1); }
+  to   { transform: rotate(360deg) scale(1); }
+}
+
+/* shockwave ring */
+.lcx-star-ring {
+  position: absolute;
+  inset: 12%;
+  border: 4px solid rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  opacity: 0;
+  z-index: 1;
+  animation: lcxRing 0.55s ease-out both var(--sd);
+}
+
+@keyframes lcxRing {
+  0%   { transform: scale(0.3); opacity: 0; }
+  35%  { opacity: 0.95; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* gentle idle bob after landing */
+.lcx-star-slot.is-lit {
+  animation: lcxStarBob 2.6s ease-in-out infinite;
+  animation-delay: calc(var(--sd) + 0.65s);
+}
+
+.lcx-star-slot.is-lit.is-big { animation-duration: 2.6s; animation-delay: calc(var(--sd) + 0.55s); }
+
+@keyframes lcxStarBob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-5px); }
+}
+
+/* ─────────────────────────── stats plank ─────────────────────────── */
+.lcx-stats {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: clamp(8px, 3cqi, 16px);
+  width: 100%;
+  padding: clamp(10px, 3.2cqi, 16px) clamp(8px, 3cqi, 14px);
+  border-radius: 18px;
+  background: linear-gradient(180deg, #FFF3DC 0%, #FBE3BC 100%);
+  border: 3px solid #C77E35;
+  box-shadow:
+    0 4px 0 #9A5E22,
+    inset 0 2px 0 rgba(255, 255, 255, 0.8),
+    inset 0 -3px 8px rgba(154, 94, 34, 0.22);
+}
+
+.lcx-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  animation: lcxStatIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both var(--std);
+}
+
+@keyframes lcxStatIn {
+  from { transform: translateY(22px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.lcx-stat-sep {
+  width: 2px;
+  border-radius: 1px;
+  background: linear-gradient(180deg, rgba(199, 126, 53, 0), rgba(199, 126, 53, 0.5), rgba(199, 126, 53, 0));
+}
+
+.lcx-stat-label {
+  font-size: clamp(11px, 3.4cqi, 13px);
+  font-weight: 600;
+  color: #9A5E22;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.lcx-stat-val {
+  font-size: clamp(19px, 6cqi, 25px);
+  font-weight: 800;
+  color: #5C3A10;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.lcx-reward {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #B45309;
+}
+
+.lcx-reward-num {
+  min-width: 2.6ch;
+  text-align: left;
+}
+
+/* ─────────────────────────── treasure chest ─────────────────────────── */
+.lcx-chest {
+  position: relative;
+  width: clamp(120px, 42cqi, 170px);
+  height: clamp(74px, 26cqi, 100px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.lcx-chest-rays {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  bottom: 6%;
+  width: clamp(190px, 66cqi, 260px);
+  height: clamp(190px, 66cqi, 260px);
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(255, 240, 170, 0.5) 0deg 14deg,
+    rgba(255, 240, 170, 0) 14deg 30deg
+  );
+  -webkit-mask-image: radial-gradient(circle, rgba(0, 0, 0, 0.95) 18%, rgba(0, 0, 0, 0) 68%);
+  mask-image: radial-gradient(circle, rgba(0, 0, 0, 0.95) 18%, rgba(0, 0, 0, 0) 68%);
+  opacity: 0;
+  animation:
+    lcxRayBurst 0.6s ease-out both 1.8s,
+    lcxRaySpin 22s linear infinite 2.4s;
+}
+
+.lcx-chest-img {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: auto;
+  filter: drop-shadow(0 8px 14px rgba(90, 50, 0, 0.4));
+  animation: lcxStarPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both 1.75s;
+}
+
+.lcx-coin-burst {
+  position: absolute;
+  left: 50%;
+  top: 8%;
+  z-index: 2;
+}
+
+.lcx-burst-coin {
+  position: absolute;
+  left: 0;
+  top: 0;
+  animation: lcxBurstCoin 1.05s cubic-bezier(0.2, 0.6, 0.4, 1) both var(--bd);
+}
+
+@keyframes lcxBurstCoin {
+  0%   { transform: translate(-50%, 0) scale(0.3); opacity: 0; }
+  15%  { transform: translate(calc(-50% + var(--bx) * 0.3), -18px) scale(1); opacity: 1; }
+  55%  { transform: translate(calc(-50% + var(--bx)), -38px) scale(1); opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--bx) * 1.35), 12px) scale(0.85); opacity: 0; }
+}
+
+/* ─────────────────────────── buttons ─────────────────────────── */
+.lcx-btn {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+}
+
+.lcx-btn:active { transform: translateY(4px) scale(0.99); }
+
+.lcx-btn-next {
+  width: 100%;
+  height: clamp(52px, 16cqi, 62px);
+  font-size: clamp(18px, 5.6cqi, 22px);
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 0 rgba(10, 90, 35, 0.5);
+  background: linear-gradient(180deg, #8AEFA8 0%, #3ECF6B 45%, #1FA850 100%);
+  border: 3px solid #178A41;
+  box-shadow:
+    0 6px 0 #0E7A35,
+    0 12px 24px rgba(8, 90, 40, 0.35),
+    inset 0 2px 0 rgba(255, 255, 255, 0.55);
+  animation:
+    lcxBtnIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both 2.1s,
+    lcxPulse 1.8s ease-in-out 3s infinite;
+}
+
+.lcx-btn-next:active {
+  box-shadow: 0 2px 0 #0E7A35, 0 6px 12px rgba(8, 90, 40, 0.35), inset 0 2px 0 rgba(255, 255, 255, 0.55);
+}
+
+/* travelling gloss sweep */
+.lcx-btn-shine {
+  position: absolute;
+  top: -20%;
+  left: -60%;
+  width: 36%;
+  height: 140%;
+  background: linear-gradient(105deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.55) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-18deg);
+  animation: lcxShine 2.8s ease-in-out 3s infinite;
+  pointer-events: none;
+}
+
+@keyframes lcxShine {
+  0%   { left: -60%; }
+  45%  { left: 130%; }
+  100% { left: 130%; }
+}
+
+@keyframes lcxPulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.028); }
+}
+
+@keyframes lcxBtnIn {
+  from { transform: translateY(30px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+.lcx-sub-row {
+  display: flex;
+  gap: clamp(10px, 3.5cqi, 16px);
+  width: 100%;
+}
+
+.lcx-btn-retry,
+.lcx-btn-home {
+  flex: 1;
+  height: clamp(44px, 13.5cqi, 52px);
+  font-size: clamp(15px, 4.6cqi, 18px);
+  text-shadow: 0 2px 0 rgba(60, 20, 110, 0.45);
+  animation: lcxBtnIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.lcx-btn-retry {
+  text-shadow: 0 2px 0 rgba(80, 20, 140, 0.45);
+  background: linear-gradient(180deg, #C794F9 0%, #9A5CF0 45%, #7C3AED 100%);
+  border: 3px solid #6D25C9;
+  box-shadow: 0 5px 0 #57149B, 0 10px 18px rgba(90, 40, 160, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.45);
+  animation-delay: 2.24s;
+}
+
+.lcx-btn-retry:active { box-shadow: 0 1px 0 #57149B, 0 4px 10px rgba(90, 40, 160, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.45); }
+
+.lcx-btn-home {
+  text-shadow: 0 2px 0 rgba(2, 60, 110, 0.45);
+  background: linear-gradient(180deg, #7CD9FF 0%, #2FA8EC 45%, #0E7FC7 100%);
+  border: 3px solid #0A6BAA;
+  box-shadow: 0 5px 0 #07598F, 0 10px 18px rgba(10, 90, 150, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.45);
+  animation-delay: 2.34s;
+}
+
+.lcx-btn-home:active { box-shadow: 0 1px 0 #07598F, 0 4px 10px rgba(10, 90, 150, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.45); }
+
+/* ─────────────────────────── short screens ─────────────────────────── */
+@media (max-height: 700px) {
+  .lcx-card { gap: 8px; margin-top: 20px; }
+  .lcx-title { font-size: clamp(26px, 9cqi, 34px); }
+  .lcx-star-slot { width: 58px; height: 58px; }
+  .lcx-star-slot.is-big { width: 76px; height: 76px; margin-bottom: 4px; }
+  .lcx-chest { height: 66px; }
+}
+
+/* ─────────────────────────── reduced motion ─────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .lcx-cf,
+  .lcx-rays,
+  .lcx-star-ring,
+  .lcx-chest-rays,
+  .lcx-burst-coin,
+  .lcx-btn-shine { animation: none; opacity: 0; }
+  .lcx-star-slot.is-lit { animation: none; }
+  .lcx-btn-next { animation: lcxBtnIn 0.3s ease-out both; }
+}

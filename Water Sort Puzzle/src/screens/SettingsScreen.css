@@ -1,0 +1,458 @@
+/* ═══════════════════════════════════════════════════════════════
+   SETTINGS — tropical premium skin (matches gameplay reference)
+   Wooden plaques, candy squircle tiles, chunky toggles, glass card.
+   ═══════════════════════════════════════════════════════════════ */
+
+.st-root {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #8ED8F8 0%, #BDEEFF 45%, #2BBDE6 100%);
+  font-family: 'Fredoka', sans-serif;
+}
+
+.st-dim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 85% at 50% 38%, rgba(4, 44, 66, 0) 42%, rgba(4, 44, 66, 0.28) 100%),
+    linear-gradient(180deg, rgba(8, 60, 90, 0.14) 0%, rgba(8, 60, 90, 0.22) 100%);
+}
+
+/* ─────────────────────────── HUD ─────────────────────────── */
+.st-hud {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(8px, 3cqi, 14px);
+  padding: clamp(12px, 4cqi, 22px) clamp(12px, 4cqi, 20px) 0;
+}
+
+.st-round-btn {
+  flex: 0 0 auto;
+  width: clamp(44px, 13.5cqi, 54px);
+  height: clamp(44px, 13.5cqi, 54px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  border: 3px solid #FFFFFF;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.st-round-btn svg { width: 24px; height: 24px; }
+
+.st-round-btn:active { transform: translateY(4px); }
+
+.st-round-back {
+  background: linear-gradient(180deg, #7CD9FF 0%, #2FA8EC 45%, #0E7FC7 100%);
+  border-color: #FFFFFF;
+  box-shadow: 0 5px 0 #07598F, 0 10px 20px rgba(10, 60, 100, 0.35);
+  animation: stDropIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both 0.05s;
+}
+.st-round-back:active { box-shadow: 0 1px 0 #07598F, 0 4px 10px rgba(10, 60, 100, 0.35); }
+
+.st-round-profile {
+  background: linear-gradient(180deg, #B06CF5 0%, #8B2FE8 55%, #6D1BC4 100%);
+  box-shadow: 0 5px 0 #57149B, 0 10px 20px rgba(70, 30, 130, 0.35);
+  animation: stDropIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both 0.15s;
+}
+.st-round-profile:active { box-shadow: 0 1px 0 #57149B, 0 4px 10px rgba(70, 30, 130, 0.35); }
+
+/* wooden banner */
+.st-banner {
+  position: relative;
+  flex: 0 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(44px, 13cqi, 56px);
+  min-width: clamp(140px, 44cqi, 210px);
+  padding: 0 clamp(16px, 5cqi, 26px);
+  border-radius: 15px;
+  background: linear-gradient(180deg, #F2A950 0%, #D9822B 55%, #B3631C 100%);
+  border: 3px solid #8A5A1E;
+  box-shadow:
+    0 6px 0 #7C4A15,
+    0 12px 22px rgba(80, 40, 5, 0.35),
+    inset 0 2px 0 rgba(255, 235, 190, 0.65),
+    inset 0 -3px 6px rgba(90, 45, 5, 0.35);
+  animation: stDropIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.st-banner::before {
+  content: "";
+  position: absolute;
+  inset: 5px 8px;
+  border-radius: 9px;
+  border: 2px solid rgba(255, 230, 180, 0.4);
+  pointer-events: none;
+}
+
+.st-banner-text {
+  font-weight: 700;
+  font-size: clamp(17px, 5.4cqi, 23px);
+  color: #FFF6E0;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 0 rgba(96, 50, 6, 0.85), 0 4px 8px rgba(96, 50, 6, 0.4);
+  white-space: nowrap;
+}
+
+.st-banner-leaf {
+  position: absolute;
+  width: clamp(22px, 6.5cqi, 32px);
+  bottom: -6px;
+  left: -14px;
+  filter: drop-shadow(0 2px 2px rgba(20, 70, 20, 0.3));
+}
+.st-banner-leaf.is-flip { left: auto; right: -14px; transform: scaleX(-1); }
+
+@keyframes stDropIn {
+  from { transform: translateY(-46px) scale(0.85); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* ─────────────────────────── body ─────────────────────────── */
+.st-body {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(14px, 4.5cqi, 22px);
+  padding: clamp(16px, 5cqi, 26px) clamp(14px, 4.5cqi, 22px) clamp(24px, 7cqi, 36px);
+}
+
+.st-body::-webkit-scrollbar { display: none; }
+
+.st-group {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(8px, 2.5cqi, 12px);
+  animation: stRise 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.2) both var(--gd, 0.2s);
+}
+
+@keyframes stRise {
+  from { transform: translateY(34px); opacity: 0; }
+  to   { transform: translateY(0); opacity: 1; }
+}
+
+/* small wooden plaque chip */
+.st-plaque {
+  position: relative;
+  display: inline-flex;
+  align-self: flex-start;
+  margin-left: clamp(10px, 3cqi, 18px);
+  padding: 5px clamp(14px, 4.5cqi, 20px) 6px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #E89A44 0%, #C97324 60%, #A85B17 100%);
+  border: 2.5px solid #8A5A1E;
+  box-shadow: 0 3px 0 #7C4A15, 0 6px 12px rgba(80, 40, 5, 0.3), inset 0 1px 0 rgba(255, 235, 190, 0.6);
+}
+
+.st-plaque span {
+  font-weight: 600;
+  font-size: clamp(12px, 3.6cqi, 14px);
+  letter-spacing: 0.05em;
+  color: #FFF3D9;
+  text-transform: uppercase;
+  text-shadow: 0 1.5px 0 rgba(96, 50, 6, 0.8);
+}
+
+/* glass card */
+.st-card {
+  width: 100%;
+  border-radius: clamp(18px, 5.5cqi, 26px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(228, 249, 255, 0.92) 100%);
+  border: 3px solid rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 12px 30px rgba(6, 46, 72, 0.28),
+    inset 0 2px 0 rgba(255, 255, 255, 1),
+    inset 0 -4px 10px rgba(120, 200, 235, 0.22);
+  padding: clamp(4px, 1.2cqi, 8px) 0;
+}
+
+.st-divider {
+  height: 2px;
+  margin: 0 clamp(14px, 4cqi, 20px);
+  background: linear-gradient(90deg, rgba(120, 190, 225, 0), rgba(120, 190, 225, 0.45), rgba(120, 190, 225, 0));
+}
+
+/* rows */
+.st-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: clamp(11px, 3.4cqi, 16px) clamp(14px, 4cqi, 20px);
+  background: none;
+  border: 0;
+  font: inherit;
+  text-align: left;
+}
+
+.st-row-btn { cursor: pointer; transition: background 0.15s ease; }
+.st-row-btn:hover { background: rgba(255, 255, 255, 0.5); }
+.st-row-btn:active { background: rgba(180, 230, 250, 0.5); }
+
+.st-row-left {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 3cqi, 14px);
+  min-width: 0;
+}
+
+.st-label {
+  font-weight: 600;
+  font-size: clamp(15px, 4.4cqi, 18px);
+  color: #14435E;
+}
+
+/* candy squircle icon tiles */
+.st-tile {
+  flex: 0 0 auto;
+  width: clamp(38px, 11.5cqi, 46px);
+  height: clamp(38px, 11.5cqi, 46px);
+  border-radius: 32%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    inset 0 2px 0 rgba(255, 255, 255, 0.45),
+    0 3px 0 var(--tile-dark, rgba(0, 0, 0, 0.25)),
+    0 6px 12px rgba(20, 60, 90, 0.25);
+}
+
+.st-tile-lg { width: clamp(44px, 13cqi, 52px); height: clamp(44px, 13cqi, 52px); }
+
+.st-tile-purple { background: linear-gradient(180deg, #C794F9, #9A5CF0 50%, #7C3AED); --tile-dark: #57149B; }
+.st-tile-blue   { background: linear-gradient(180deg, #7CD9FF, #2FA8EC 50%, #0E7FC7); --tile-dark: #07598F; }
+.st-tile-pink   { background: linear-gradient(180deg, #FFA3CE, #F062A8 50%, #DB2777); --tile-dark: #A51456; }
+.st-tile-green  { background: linear-gradient(180deg, #8AEFA8, #3ECF6B 45%, #1FA850); --tile-dark: #0E7A35; }
+.st-tile-indigo { background: linear-gradient(180deg, #A5B4FC, #6366F1 50%, #4F46E5); --tile-dark: #3730A3; }
+.st-tile-amber  { background: linear-gradient(180deg, #FFD98A, #FBB040 50%, #F08C00); --tile-dark: #B45309; }
+.st-tile-teal   { background: linear-gradient(180deg, #7BE8DC, #2BC4B4 50%, #0F9E90); --tile-dark: #0B7A70; }
+
+/* value chip */
+.st-chip {
+  padding: 6px clamp(12px, 3.6cqi, 16px);
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: clamp(13px, 3.8cqi, 15px);
+  color: #0E7FC7;
+  background: linear-gradient(180deg, #FFFFFF, #D8F1FF);
+  border: 2px solid #9FD8F5;
+  box-shadow: inset 0 1px 0 #FFFFFF, 0 2px 0 rgba(120, 180, 220, 0.35);
+}
+
+/* chevron circle */
+.st-chev {
+  flex: 0 0 auto;
+  width: clamp(26px, 8cqi, 30px);
+  height: clamp(26px, 8cqi, 30px);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #6FD2F5, #1E9AD9);
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 2.5px 0 #0A6BA6, 0 4px 8px rgba(20, 90, 140, 0.3);
+}
+
+/* ─────────────────────────── toggles ─────────────────────────── */
+.st-toggle {
+  flex: 0 0 auto;
+  position: relative;
+  width: clamp(58px, 17.5cqi, 68px);
+  height: clamp(32px, 10cqi, 38px);
+  border-radius: 999px;
+  padding: 0;
+  cursor: pointer;
+  background: linear-gradient(180deg, #E7EFF6 0%, #C9D9E6 100%);
+  border: 2.5px solid #AFC5D6;
+  box-shadow: inset 0 3px 6px rgba(90, 120, 150, 0.35), 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.st-toggle.is-on {
+  background: linear-gradient(180deg, #8AEFA8 0%, #2FBF5F 60%, #199C47 100%);
+  border-color: #178A41;
+  box-shadow: inset 0 3px 6px rgba(10, 90, 40, 0.3), 0 1px 0 rgba(255, 255, 255, 0.8), 0 0 12px rgba(62, 207, 107, 0.45);
+}
+
+.st-toggle-knob {
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: calc(50% - 3px);
+  height: calc(100% - 7px);
+  border-radius: 999px;
+  background: radial-gradient(circle at 35% 28%, #FFFFFF 0%, #F3F8FC 60%, #D8E4EE 100%);
+  border: 1.5px solid rgba(120, 150, 175, 0.5);
+  box-shadow: 0 3px 6px rgba(30, 60, 90, 0.35), inset 0 1px 0 #FFFFFF;
+  transform: translateY(-50%);
+  transition: left 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.st-toggle.is-on .st-toggle-knob {
+  left: calc(100% - (50% - 3px) - 3px);
+}
+
+.st-toggle:active .st-toggle-knob {
+  width: calc(50% + 1px);
+}
+
+/* ─────────────────────────── profile card ─────────────────────────── */
+.st-profile-card {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 3cqi, 14px);
+  padding: clamp(12px, 3.6cqi, 16px) clamp(14px, 4cqi, 20px);
+  border-radius: clamp(18px, 5.5cqi, 26px);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(214, 244, 255, 0.92) 100%);
+  border: 3px solid rgba(255, 255, 255, 0.95);
+  box-shadow:
+    0 12px 30px rgba(6, 46, 72, 0.28),
+    inset 0 2px 0 rgba(255, 255, 255, 1),
+    inset 0 -4px 10px rgba(120, 200, 235, 0.22);
+  animation: stRise 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.2) both var(--gd, 0.34s);
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+.st-profile-card:active {
+  transform: translateY(3px);
+  box-shadow: 0 5px 14px rgba(6, 46, 72, 0.25), inset 0 2px 0 rgba(255, 255, 255, 1);
+}
+
+.st-profile-copy { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.st-profile-title { font-weight: 700; font-size: clamp(16px, 4.6cqi, 18px); color: #14435E; }
+.st-profile-sub { font-size: clamp(12px, 3.4cqi, 13px); font-weight: 500; color: #4E7A94; }
+
+/* ─────────────────────────── modal ─────────────────────────── */
+.st-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(20px, 6cqi, 32px);
+  background: rgba(6, 34, 54, 0.55);
+  animation: stFadeIn 0.25s ease-out both;
+}
+
+@keyframes stFadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.st-modal {
+  position: relative;
+  width: 100%;
+  max-width: 330px;
+  padding: clamp(26px, 8cqi, 34px) clamp(16px, 5cqi, 22px) clamp(16px, 5cqi, 22px);
+  border-radius: clamp(22px, 6.5cqi, 30px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 3.5cqi, 18px);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.97) 0%, rgba(228, 249, 255, 0.95) 100%);
+  border: 3px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 18px 44px rgba(4, 30, 50, 0.45), inset 0 2px 0 #FFFFFF;
+  animation: stModalIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes stModalIn {
+  from { transform: scale(0.7) translateY(30px); opacity: 0; }
+  to   { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.st-modal-banner {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: clamp(40px, 12cqi, 50px);
+  padding: 0 clamp(20px, 6cqi, 30px);
+  border-radius: 14px;
+  background: linear-gradient(180deg, #F2A950 0%, #D9822B 55%, #B3631C 100%);
+  border: 3px solid #8A5A1E;
+  box-shadow: 0 5px 0 #7C4A15, 0 10px 18px rgba(80, 40, 5, 0.4), inset 0 2px 0 rgba(255, 235, 190, 0.65);
+}
+
+.st-modal-x {
+  position: absolute;
+  top: clamp(10px, 3cqi, 14px);
+  right: clamp(10px, 3cqi, 14px);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  background: linear-gradient(180deg, #FF9A9A, #EF4444 60%, #C81E1E);
+  box-shadow: 0 2.5px 0 #991B1B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.st-modal-x:active { transform: translateY(2.5px); box-shadow: 0 0 0 #991B1B; }
+
+.st-modal-text {
+  margin: 0;
+  font-size: clamp(13.5px, 3.9cqi, 15px);
+  font-weight: 500;
+  line-height: 1.55;
+  color: #3D6580;
+}
+
+.st-modal-btn {
+  align-self: stretch;
+  height: clamp(44px, 13cqi, 52px);
+  border-radius: 999px;
+  border: 3px solid #178A41;
+  background: linear-gradient(180deg, #8AEFA8 0%, #3ECF6B 45%, #1FA850 100%);
+  box-shadow: 0 5px 0 #0E7A35, 0 10px 18px rgba(8, 90, 40, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.55);
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: clamp(16px, 4.6cqi, 18px);
+  color: #FFFFFF;
+  text-shadow: 0 2px 0 rgba(10, 90, 35, 0.5);
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.st-modal-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #0E7A35, 0 4px 10px rgba(8, 90, 40, 0.3), inset 0 2px 0 rgba(255, 255, 255, 0.55);
+}
+
+/* ─────────────────────────── reduced motion ─────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .st-group, .st-profile-card, .st-banner, .st-round-btn { animation: none; }
+  .st-toggle-knob { transition: none; }
+}

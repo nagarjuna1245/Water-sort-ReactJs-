@@ -1,0 +1,597 @@
+/* ===================================================
+   LEVEL SELECT — PREMIUM TROPICAL WATER WORLD
+   Reference-exact: 5×4 bottle grid on floating islands,
+   crown + 3D Levels logo, wooden plaques, aquatic HUD.
+   Design space: 480×720 — every size = N * var(--u).
+   =================================================== */
+
+.lscreen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  container-type: size;
+  font-family: 'Fredoka', 'Inter', sans-serif;
+  background: #29BCE6;
+}
+
+.lsstage {
+  --u: min(0.20833vw, 0.13889vh);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@supports (width: 1cqw) {
+  .lsstage {
+    --u: min(0.20833cqw, 0.13889cqh);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   BACKGROUND ENVIRONMENT
+   ───────────────────────────────────────────── */
+.lsbg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.lsbg-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ─────────────────────────────────────────────
+   TOP HUD — COIN CAPSULE + SETTINGS
+   ───────────────────────────────────────────── */
+.lshud {
+  position: absolute;
+  top: calc(15 * var(--u) + env(safe-area-inset-top, 0px));
+  left: calc(20 * var(--u));
+  right: calc(20 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 6;
+}
+
+.lscoin-capsule {
+  display: flex;
+  align-items: center;
+  gap: calc(9 * var(--u));
+  padding: calc(5 * var(--u)) calc(9 * var(--u)) calc(5 * var(--u)) calc(6 * var(--u));
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(244,250,255,0.94) 60%, rgba(230,241,250,0.92) 100%);
+  box-shadow:
+    0 calc(5 * var(--u)) calc(14 * var(--u)) rgba(31, 92, 140, 0.28),
+    inset 0 calc(1.5 * var(--u)) 0 rgba(255,255,255,0.95),
+    inset 0 calc(-2 * var(--u)) calc(4 * var(--u)) rgba(148, 187, 214, 0.35);
+  border: 1px solid rgba(255,255,255,0.85);
+}
+
+.lscoin-svg {
+  width: calc(36 * var(--u));
+  height: calc(36 * var(--u));
+  filter: drop-shadow(0 0 calc(6 * var(--u)) rgba(255, 200, 60, 0.55));
+}
+
+.lscoin-count {
+  font-size: calc(24 * var(--u));
+  font-weight: 700;
+  color: #16276B;
+  letter-spacing: 0.3px;
+  min-width: calc(46 * var(--u));
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+}
+
+.lscoin-plus {
+  width: calc(24 * var(--u));
+  height: calc(24 * var(--u));
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 34% 28%, #7BE495 0%, #34C759 55%, #1FA84A 100%);
+  box-shadow:
+    0 calc(3 * var(--u)) calc(7 * var(--u)) rgba(20, 120, 60, 0.4),
+    inset 0 calc(1.5 * var(--u)) 0 rgba(255,255,255,0.55);
+  transition: transform 0.15s ease;
+}
+
+.lscoin-plus svg {
+  width: calc(11 * var(--u));
+  height: calc(11 * var(--u));
+}
+
+.lscoin-plus:active { transform: scale(0.9); }
+
+.lscircle-btn {
+  width: calc(46 * var(--u));
+  height: calc(46 * var(--u));
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.9);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F4FAFF 62%, #E4F0FA 100%);
+  box-shadow:
+    0 calc(5 * var(--u)) calc(14 * var(--u)) rgba(31, 92, 140, 0.3),
+    inset 0 calc(1.5 * var(--u)) 0 rgba(255,255,255,0.95),
+    inset 0 calc(-2 * var(--u)) calc(4 * var(--u)) rgba(160, 195, 220, 0.3);
+  transition: transform 0.15s ease;
+}
+
+.lscircle-btn svg {
+  width: calc(24 * var(--u));
+  height: calc(24 * var(--u));
+}
+
+.lscircle-btn:active { transform: scale(0.92); }
+
+.lssettings-btn svg { filter: drop-shadow(0 0 calc(4 * var(--u)) rgba(124, 58, 237, 0.35)); }
+
+/* ── Back button — floats below coin HUD on the left ── */
+.lsback-btn {
+  position: absolute;
+  top: calc(75 * var(--u) + env(safe-area-inset-top, 0px));
+  left: calc(20 * var(--u));
+  z-index: 6;
+}
+
+.lsback-btn svg { filter: drop-shadow(0 0 calc(4 * var(--u)) rgba(124, 58, 237, 0.3)); }
+
+/* ─────────────────────────────────────────────
+   MAIN COLUMN
+   ───────────────────────────────────────────── */
+.lsmain {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: calc(30 * var(--u));
+}
+
+/* ─────────────────────────────────────────────
+   LEVELS LOGO + CROWN + FOLIAGE
+   ───────────────────────────────────────────── */
+.lslogo-block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.lslogo-leaves {
+  position: absolute;
+  top: calc(48 * var(--u));
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(280 * var(--u));
+  z-index: 0;
+  filter: drop-shadow(0 calc(8 * var(--u)) calc(10 * var(--u)) rgba(12, 74, 110, 0.25));
+}
+
+.lslogo-crown {
+  position: relative;
+  z-index: 2;
+  margin-bottom: calc(-4 * var(--u));
+  filter: drop-shadow(0 calc(4 * var(--u)) calc(8 * var(--u)) rgba(120, 60, 0, 0.35));
+  animation: lscrown-bob 3.4s ease-in-out infinite;
+}
+
+.lslogo-crown svg {
+  display: block;
+  width: calc(54 * var(--u));
+  height: auto;
+}
+
+@keyframes lscrown-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(calc(-4 * var(--u))); }
+}
+
+.lslogo-title {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+  display: flex;
+  line-height: 1.08;
+  font-size: calc(64 * var(--u));
+  font-weight: 700;
+}
+
+.lsletter {
+  position: relative;
+  display: inline-block;
+  margin: 0 calc(0.6 * var(--u));
+}
+
+.lsletter-back,
+.lsletter-front {
+  font-family: 'Fredoka', 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+.lsletter-back {
+  display: block;
+  color: #2A1A6B;
+  -webkit-text-stroke: calc(8 * var(--u)) #2A1A6B;
+  text-shadow:
+    0 calc(3 * var(--u)) 0 #241560,
+    0 calc(6 * var(--u)) 0 #1B0F4C,
+    0 calc(9 * var(--u)) 0 #150B3C,
+    0 calc(14 * var(--u)) calc(18 * var(--u)) rgba(13, 24, 74, 0.45);
+}
+
+.lsletter-front {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    #FFF7C2 0%,
+    #FFE45C 26%,
+    #FFC531 55%,
+    #FF9E2C 82%,
+    #F97C13 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* droplets + sparkles around the logo */
+.lslogo-block .lsdroplet-svg {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  filter: drop-shadow(0 calc(3 * var(--u)) calc(4 * var(--u)) rgba(10, 90, 140, 0.3));
+  animation: lsdrop-float 3.8s ease-in-out infinite;
+}
+
+.lslogo-block .lsdroplet-svg:nth-of-type(2) { animation-delay: -1.2s; }
+.lslogo-block .lsdroplet-svg:nth-of-type(3) { animation-delay: -2.1s; }
+.lslogo-block .lsdroplet-svg:nth-of-type(4) { animation-delay: -3s; }
+
+@keyframes lsdrop-float {
+  0%, 100% { transform: translateY(0) rotate(var(--lsrot, 0deg)); }
+  50%      { transform: translateY(calc(-6 * var(--u))) rotate(var(--lsrot, 0deg)); }
+}
+
+.lslogo-block .lssparkle-svg {
+  position: absolute;
+  z-index: 3;
+  pointer-events: none;
+  filter: drop-shadow(0 0 calc(5 * var(--u)) rgba(255,255,255,0.9));
+  animation: lssparkle-twinkle 2.4s ease-in-out infinite;
+}
+
+.lslogo-block .lssparkle-svg:nth-of-type(2) { animation-delay: -0.7s; }
+.lslogo-block .lssparkle-svg:nth-of-type(3) { animation-delay: -1.3s; }
+.lslogo-block .lssparkle-svg:nth-of-type(4) { animation-delay: -1.9s; }
+
+@keyframes lssparkle-twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.7) rotate(0deg); }
+  50%      { opacity: 1;    transform: scale(1.15) rotate(20deg); }
+}
+
+/* ── Wooden subtitle plaque ── */
+.lsplaque {
+  position: relative;
+  z-index: 3;
+  margin-top: calc(-12 * var(--u));
+  width: calc(200 * var(--u));
+}
+
+.lsplaque svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 calc(5 * var(--u)) calc(10 * var(--u)) rgba(60, 30, 0, 0.35));
+}
+
+.lsplaque-text {
+  font-family: 'Fredoka', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 15.5px;
+  fill: #FFFFFF;
+  letter-spacing: 0.4px;
+}
+
+/* ─────────────────────────────────────────────
+   LEVEL GRID — 5 columns × 4 rows
+   ───────────────────────────────────────────── */
+.lsgrid-wrap {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  width: calc(388 * var(--u));
+  margin-top: calc(20 * var(--u));
+}
+
+.lsgrid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-auto-rows: 25%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  width: 100%;
+  height: 100%;
+}
+
+.lsgrid::-webkit-scrollbar {
+  display: none;
+}
+
+/* fade hint that the endless grid continues below */
+.lsgrid-wrap::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(26 * var(--u));
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(37, 182, 242, 0), rgba(23, 163, 218, 0.38));
+}
+
+.lslevel-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  /* Layout isolation only: paint containment would clip the bottles' shadows. */
+  contain: layout style;
+  transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.lslevel-cell:active { transform: scale(0.9); }
+
+.lslevel-cell--locked { cursor: default; }
+.lslevel-cell--locked:active { transform: none; }
+
+.lsbottle-svg {
+  display: block;
+  height: min(calc(96 * var(--u)), 100%);
+  width: auto;
+  max-width: 96%;
+  overflow: visible;
+  animation: lsbottle-bob 3.6s ease-in-out infinite;
+  filter: drop-shadow(0 calc(4 * var(--u)) calc(6 * var(--u)) rgba(8, 62, 100, 0.22));
+}
+
+/* Only the frontier bottle keeps the second glow: each chained filter costs a
+   full re-raster of that bottle, and dozens of them are on screen at once. */
+.lslevel-cell--current .lsbottle-svg {
+  filter:
+    drop-shadow(0 calc(4 * var(--u)) calc(6 * var(--u)) rgba(8, 62, 100, 0.22))
+    drop-shadow(0 0 calc(7 * var(--u)) rgba(94, 220, 255, 0.5));
+}
+
+/* Gentle floating — animated on the <svg> itself, not on an inner <g>:
+   transforms of SVG children cannot be GPU-composited, so they re-rasterise
+   every bottle, every frame. */
+
+.lslevel-cell:nth-child(5n+2) .lsbottle-svg { animation-delay: -0.7s; }
+.lslevel-cell:nth-child(5n+3) .lsbottle-svg { animation-delay: -1.4s; }
+.lslevel-cell:nth-child(5n+4) .lsbottle-svg { animation-delay: -2.1s; }
+.lslevel-cell:nth-child(5n+5) .lsbottle-svg { animation-delay: -2.8s; }
+.lslevel-cell:nth-child(n+6)  .lsbottle-svg { animation-duration: 4.1s; }
+.lslevel-cell:nth-child(n+11) .lsbottle-svg { animation-duration: 3.9s; }
+.lslevel-cell:nth-child(n+16) .lsbottle-svg { animation-duration: 4.4s; }
+
+/* Idle motion stops while the grid moves: the scroll has the GPU to itself. */
+.lscreen.is-scrolling .lsbottle-svg { animation-play-state: paused; }
+
+@keyframes lsbottle-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(calc(-3 * var(--u))); }
+}
+
+/* level numbers inside bottles (sizes are SVG viewBox units) */
+.lsnum-u {
+  font-family: 'Fredoka', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 27px;
+  fill: #FFFFFF;
+  stroke: rgba(9, 88, 150, 0.45);
+  stroke-width: 4.5px;
+  paint-order: stroke fill;
+  stroke-linejoin: round;
+}
+
+.lsnum-l {
+  font-family: 'Fredoka', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  fill: #8B8FC0;
+}
+
+/* locked tap → shake */
+.lslevel-cell--shake {
+  animation: lslocked-shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes lslocked-shake {
+  10%, 90%      { transform: translateX(calc(-2 * var(--u))) rotate(-1.5deg); }
+  20%, 80%      { transform: translateX(calc(3 * var(--u))) rotate(1.5deg); }
+  30%, 50%, 70% { transform: translateX(calc(-3.5 * var(--u))) rotate(-2deg); }
+  40%, 60%      { transform: translateX(calc(3.5 * var(--u))) rotate(2deg); }
+  100%          { transform: translateX(0) rotate(0); }
+}
+
+/* ── small environmental elements between rows ── */
+.lsdeco {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.lsdeco-lily-1   { left: -4%;  top: 44%; width: calc(34 * var(--u)); animation: lslily-bob 6s ease-in-out infinite; }
+.lsdeco-rock-1   { left: 3%;   top: 40%; width: calc(24 * var(--u)); }
+.lsdeco-lily-2   { right: -4%; top: 46%; width: calc(28 * var(--u)); animation: lslily-bob 7s ease-in-out infinite reverse; }
+.lsdeco-rock-2   { right: 2%;  top: 56%; width: calc(20 * var(--u)); }
+
+.lsdeco-bubbles-1 { left: 10%;  top: 30%; }
+.lsdeco-bubbles-2 { right: 10%; top: 68%; }
+
+.lsdeco-bubbles-1 span,
+.lsdeco-bubbles-2 span {
+  display: block;
+  width: calc(6 * var(--u));
+  height: calc(6 * var(--u));
+  margin: calc(5 * var(--u)) 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.25) 60%, rgba(255,255,255,0.05) 100%);
+  border: 1px solid rgba(255,255,255,0.5);
+  animation: lsbubble-rise 4.6s ease-in infinite;
+}
+
+.lsdeco-bubbles-1 span:nth-child(2) { animation-delay: -1.6s; width: calc(4 * var(--u)); height: calc(4 * var(--u)); }
+.lsdeco-bubbles-1 span:nth-child(3) { animation-delay: -3.1s; width: calc(5 * var(--u)); height: calc(5 * var(--u)); }
+.lsdeco-bubbles-2 span:nth-child(2) { animation-delay: -2.2s; width: calc(4.5 * var(--u)); height: calc(4.5 * var(--u)); }
+.lsdeco-bubbles-2 span:nth-child(3) { animation-delay: -3.7s; width: calc(3.5 * var(--u)); height: calc(3.5 * var(--u)); }
+
+@keyframes lsbubble-rise {
+  0%   { transform: translateY(calc(6 * var(--u))); opacity: 0; }
+  25%  { opacity: 0.9; }
+  100% { transform: translateY(calc(-22 * var(--u))); opacity: 0; }
+}
+
+@keyframes lslily-bob {
+  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+  50%      { transform: translateY(calc(-3 * var(--u))) rotate(1.5deg); }
+}
+
+/* ─────────────────────────────────────────────
+   BOTTOM ISLAND SIGN
+   ───────────────────────────────────────────── */
+.lsbottom-sign {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+  width: calc(190 * var(--u));
+  margin: 0;
+  animation: lslily-bob 6.5s ease-in-out infinite;
+  filter: drop-shadow(0 calc(8 * var(--u)) calc(12 * var(--u)) rgba(8, 62, 100, 0.25));
+}
+
+.lsbottom-sign svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+.lssign-line1 {
+  font-family: 'Fredoka', 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  fill: #FFFFFF;
+  letter-spacing: 0.5px;
+}
+
+.lssign-line2 {
+  font-family: 'Fredoka', 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 10.5px;
+  fill: #FFFFFF;
+  letter-spacing: 0.3px;
+}
+
+.lssign-line1,
+.lssign-line2 {
+  stroke: rgba(122, 68, 10, 0.45);
+  stroke-width: 2px;
+  paint-order: stroke fill;
+  stroke-linejoin: round;
+}
+
+/* ─────────────────────────────────────────────
+   BOTTOM NAVIGATION — scaled to the screen
+   ───────────────────────────────────────────── */
+.lscreen .mobile-game-bottom-nav {
+  position: relative;
+  margin: 0 calc(20 * var(--u)) calc(14 * var(--u));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  animation: none;
+}
+
+.lscreen .bottom-nav-inner {
+  height: calc(72 * var(--u));
+  border-radius: calc(34 * var(--u));
+}
+
+.lscreen .game-nav-btn {
+  height: calc(64 * var(--u));
+  gap: calc(3 * var(--u));
+}
+
+.lscreen .nav-icon-wrap {
+  width: calc(58 * var(--u));
+  height: calc(44 * var(--u));
+  border-radius: calc(22 * var(--u));
+}
+
+.lscreen .game-nav-btn svg {
+  width: calc(25 * var(--u));
+  height: calc(25 * var(--u));
+}
+
+.lscreen .nav-label {
+  font-size: calc(14 * var(--u));
+  font-weight: 600;
+}
+
+.lscreen .nav-label.active {
+  font-weight: 700;
+}
+
+.lscreen .nav-active-indicator {
+  width: calc(26 * var(--u));
+  height: calc(4 * var(--u));
+  border-radius: calc(2 * var(--u));
+  bottom: calc(5 * var(--u));
+}
+
+/* ─────────────────────────────────────────────
+   RESPONSIVE — TALL PHONE VIEWPORTS (aspect < 0.62)
+   Phones are taller than the 2:3 reference, so the
+   logo cluster and grid grow to spend the extra height
+   instead of leaving sparse gaps between bottle rows.
+   ───────────────────────────────────────────── */
+@container (max-aspect-ratio: 0.62) {
+  .lsmain { padding-top: calc(36 * var(--u)); }
+
+  .lslogo-crown { width: calc(60 * var(--u)); }
+  .lslogo-title { font-size: calc(71 * var(--u)); }
+  .lslogo-leaves { width: calc(308 * var(--u)); }
+  .lsplaque { width: calc(220 * var(--u)); }
+
+  .lsgrid-wrap {
+    width: min(calc(432 * var(--u)), 94cqw);
+    margin-top: calc(26 * var(--u));
+  }
+  .lsbottle-svg { height: min(calc(106 * var(--u)), 100%); }
+
+  .lsbottom-sign { width: calc(208 * var(--u)); }
+}
