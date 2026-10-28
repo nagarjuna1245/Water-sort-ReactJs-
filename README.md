@@ -172,89 +172,10 @@ A valid pour requires:
 
 * React Context API
 * React Hooks
-
 ### Storage
-
 * Browser LocalStorage
-
 ---
-
-## 📁 Project Structure
-
-```text
-water-sort-puzzle/
-│
-├── public/
-│
-├── src/
-│   ├── assets/
-│   │
-│   ├── components/
-│   │   ├── common/
-│   │   ├── containers/
-│   │   ├── effects/
-│   │   ├── environment/
-│   │   ├── home/
-│   │   └── shop/
-│   │
-│   ├── context/
-│   │   └── PlayerContext.jsx
-│   │
-│   ├── game/
-│   │   ├── catalogData.js
-│   │   ├── colors.js
-│   │   ├── gameEngine.js
-│   │   ├── glassGeometry.js
-│   │   ├── levelGenerator.js
-│   │   ├── levels.js
-│   │   ├── liquidMath.js
-│   │   └── pourAnimator.js
-│   │
-│   ├── screens/
-│   │   ├── DailyChallengesScreen.jsx
-│   │   ├── DailyRewardsScreen.jsx
-│   │   ├── GameplayScreen.jsx
-│   │   ├── InstructionsScreen.jsx
-│   │   ├── LevelCompleteScreen.jsx
-│   │   ├── LevelSelectScreen.jsx
-│   │   ├── ProfileScreen.jsx
-│   │   ├── SettingsScreen.jsx
-│   │   ├── ShopBottlesScreen.jsx
-│   │   ├── ShopThemesScreen.jsx
-│   │   └── ShopTubesScreen.jsx
-│   │
-│   ├── utils/
-│   │   └── audio.js
-│   │
-│   ├── App.jsx
-│   ├── index.css
-│   └── main.jsx
-│
-├── .gitignore
-├── index.html
-├── package.json
-├── package-lock.json
-└── vite.config.js
-```
-
 ---
-
-## 🌐 Deployment
-
-The project can be deployed using platforms such as:
-
-* Vercel
-* Netlify
-* GitHub Pages
-
-### Vercel
-
-The current live deployment:
-
-**https://puzz.vercel.app/**
-
----
-
 ## 📱 Responsive Design
 
 The game is designed around a mobile-game experience while supporting desktop browsers.
@@ -269,9 +190,7 @@ The gameplay board dynamically adjusts:
 * Board dimensions
 
 This allows different puzzle sizes to fit the available screen area.
-
 ---
-
 ## 🔮 Future Improvements
 
 Possible future enhancements include:
