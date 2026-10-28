@@ -2,7 +2,7 @@
 
 A modern and interactive **Water Sort Puzzle Game** built with **React.js and Vite**. The game features dynamic puzzle generation, animated liquid pouring, multiple difficulty levels, player progression, themes, daily challenges, rewards, achievements, and persistent game data.
 
-🔗 **Live Demo:** https://puzz.vercel.app/
+🔗 **Live Demo:** https://water-sort-puzzle-1.vercel.app
 
 🔗 **GitHub:** https://github.com/nagarjuna1245/Water-sort-ReactJs-
 
