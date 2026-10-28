@@ -144,38 +144,7 @@ A valid pour requires:
 2. The destination tube must not be full.
 3. The destination must be empty or have the same top color as the source.
 4. Only the available matching top-color units are transferred.
-
----
-
-## 🛠️ Tech Stack
-
-### Frontend
-
-* React.js
-* JavaScript
-* HTML5
-* CSS3
-
-### Build Tool
-
-* Vite
-
-### Routing
-
-* React Router
-
-### Icons
-
-* Lucide React
-
-### State Management
-
-* React Context API
-* React Hooks
-### Storage
-* Browser LocalStorage
----
----
+5. 
 ## 📱 Responsive Design
 
 The game is designed around a mobile-game experience while supporting desktop browsers.
