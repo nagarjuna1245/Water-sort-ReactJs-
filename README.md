@@ -239,52 +239,6 @@ water-sort-puzzle/
 
 ---
 
-## 🚀 Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/nagarjuna1245/Water-sort-ReactJs-.git
-```
-
-### 2. Open the project
-
-```bash
-cd Water-sort-ReactJs-
-```
-
-### 3. Install dependencies
-
-```bash
-npm install
-```
-
-### 4. Start the development server
-
-```bash
-npm run dev
-```
-
-The application will be available at the local Vite development URL shown in the terminal.
-
----
-
-## 📦 Production Build
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-Preview the production build:
-
-```bash
-npm run preview
-```
-
----
-
 ## 🌐 Deployment
 
 The project can be deployed using platforms such as:
@@ -315,24 +269,6 @@ The gameplay board dynamically adjusts:
 * Board dimensions
 
 This allows different puzzle sizes to fit the available screen area.
-
----
-
-## 🎨 Design
-
-The game uses a polished casual-game interface with:
-
-* Glass-style tubes
-* Animated liquid
-* Wooden game platforms
-* Dynamic backgrounds
-* Game HUD
-* Coins
-* Hints
-* Game controls
-* Animated transitions
-* Responsive layouts
-* Custom game themes
 
 ---
 
