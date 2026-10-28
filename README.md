@@ -289,6 +289,38 @@ Possible future enhancements include:
 * Mobile app deployment
 * Push notifications
 * Analytics and player progression tracking
-  <img width="547" height="886" alt="image" src="https://github.com/user-attachments/assets/2c408ec5-f863-419b-b322-b389f7e08de7" />
 
+## 📸 Game Screenshots
 
+Explore the beautiful UI and gameplay of Water Sort Puzzle.
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="screenshots/home-screen.png" width="200" alt="Home Screen"/>
+      <br/><b>🏠 Home Screen</b>
+    </td>
+    <td align="center">
+      <img src="screenshots/level-selection.png" width="200" alt="Level Selection"/>
+      <br/><b>🎯 Level Selection</b>
+    </td>
+    <td align="center">
+      <img src="screenshots/gameplay-level-8.png" width="200" alt="Gameplay"/>
+      <br/><b>🧪 Gameplay</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="screenshots/settings.png" width="200" alt="Settings"/>
+      <br/><b>⚙️ Settings</b>
+    </td>
+    <td align="center">
+      <img src="screenshots/player-profile.png" width="200" alt="Player Profile"/>
+      <br/><b>👤 Player Profile</b>
+    </td>
+    <td align="center">
+      <img src="screenshots/daily-rewards.png" width="200" alt="Daily Rewards"/>
+      <br/><b>🎁 Daily Rewards</b>
+    </td>
+  </tr>
+</table>
