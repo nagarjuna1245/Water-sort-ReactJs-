@@ -318,72 +318,6 @@ This allows different puzzle sizes to fit the available screen area.
 
 ---
 
-## 🧠 Architecture
-
-The application separates gameplay logic from presentation.
-
-### Game Engine
-
-```text
-gameEngine.js
-```
-
-Responsible for:
-
-```text
-Move Validation
-      ↓
-Liquid Transfer
-      ↓
-Tube Completion
-      ↓
-Puzzle Completion
-      ↓
-Hint Generation
-```
-
-### Player State
-
-```text
-PlayerContext.jsx
-```
-
-Responsible for:
-
-```text
-Coins
-Levels
-Stars
-Statistics
-Themes
-Bottles
-Tubes
-Hints
-Achievements
-Daily Challenges
-Daily Rewards
-Streaks
-Audio Preferences
-```
-
-### Gameplay
-
-```text
-GameplayScreen.jsx
-        ↓
-Game Engine
-        ↓
-Level Generator
-        ↓
-Pour Animator
-        ↓
-Tube Renderer
-        ↓
-Liquid Renderer
-```
-
----
-
 ## 🎨 Design
 
 The game uses a polished casual-game interface with:
@@ -420,19 +354,4 @@ Possible future enhancements include:
 * Push notifications
 * Analytics and player progression tracking
 
----
 
-## 👨‍💻 Author
-
-**Kotha Venkata Nagarjuna**
-
-Frontend / React.js Developer
-
-GitHub:
-https://github.com/nagarjuna1245
-
----
-
-## 📄 License
-
-This project is intended for portfolio and educational purposes.
