@@ -215,19 +215,6 @@ Open the local URL displayed in your terminal to play the game.
 
 ---
 
-## 👨‍💻 Developer
-
-<div align="center">
-
-### K. Venkata Nagarjuna
-
-Frontend Developer | React.js Developer
-
-<a href="https://github.com/nagarjuna1245">
-  <img src="https://img.shields.io/badge/GitHub-Visit_Profile-181717?style=for-the-badge&logo=github" alt="GitHub Profile">
-</a>
-
-<br><br>
 
 **Enjoy the challenge. Master the colors. 💧**
 
