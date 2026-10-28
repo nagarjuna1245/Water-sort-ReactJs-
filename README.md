@@ -214,10 +214,3 @@ Open the local URL displayed in your terminal to play the game.
 - Push notifications and gameplay analytics.
 
 ---
-
-
-**Enjoy the challenge. Master the colors. 💧**
-
-<a href="https://water-sort-puzzle-1.vercel.app">▶ Play Water Sort Puzzle</a>
-
-</div>
