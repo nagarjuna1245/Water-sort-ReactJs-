@@ -183,21 +183,31 @@ Possible future enhancements include:
 Explore the beautiful UI and gameplay of Water Sort Puzzle.
 
 <p align="center">
-  <img src="./home-screen.png" width="200" alt="Home Screen">
-  <img src="./level-selection.png" width="200" alt="Level Selection">
-  <img src="./gameplay-level-8.png" width="200" alt="Gameplay">
+  <img src="./home-screen.png" width="180" alt="Home Screen">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./level-selection.png" width="180" alt="Level Selection">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./gameplay-level-8.png" width="180" alt="Gameplay">
+</p>
+
+<br>
+
+<p align="center">
+  <img src="./settings.png" width="180" alt="Settings">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./player-profile.png" width="180" alt="Player Profile">
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="./daily-rewards.png" width="180" alt="Daily Rewards">
 </p>
 
 <p align="center">
-  <img src="./settings.png" width="200" alt="Settings">
-  <img src="./player-profile.png" width="200" alt="Player Profile">
-  <img src="./daily-rewards.png" width="200" alt="Daily Rewards">
+  🏠 <b>Home Screen</b> &nbsp;&nbsp;&nbsp;
+  🎯 <b>Level Selection</b> &nbsp;&nbsp;&nbsp;
+  🧪 <b>Gameplay</b>
 </p>
 
 <p align="center">
-  🏠 <b>Home Screen</b> &nbsp; 🎯 <b>Level Selection</b> &nbsp; 🧪 <b>Gameplay</b>
-</p>
-
-<p align="center">
-  ⚙️ <b>Settings</b> &nbsp; 👤 <b>Player Profile</b> &nbsp; 🎁 <b>Daily Rewards</b>
+  ⚙️ <b>Settings</b> &nbsp;&nbsp;&nbsp;
+  👤 <b>Player Profile</b> &nbsp;&nbsp;&nbsp;
+  🎁 <b>Daily Rewards</b>
 </p>
