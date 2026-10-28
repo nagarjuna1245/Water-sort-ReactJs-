@@ -289,5 +289,6 @@ Possible future enhancements include:
 * Mobile app deployment
 * Push notifications
 * Analytics and player progression tracking
+  <img width="547" height="886" alt="image" src="https://github.com/user-attachments/assets/2c408ec5-f863-419b-b322-b389f7e08de7" />
 
 
